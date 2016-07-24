@@ -1,0 +1,5 @@
+An extension for Calc with some additional functions like:
+
+LEENUMERO to convert from number to text.
+
+Copyright (c) 2016 Lorenzo Carbonell (https://www.atareao.es)

@@ -1,0 +1,13 @@
+#include <com/sun/star/uno/XInterface.idl>
+
+module es { module atareao { module libreoffice { module Funciones {
+
+    interface XFunciones
+    {
+      string leenumero( [in] long number);
+      double interpola( [in] double x1, [in] double y1, [in] double x2, [in] double y2, [in] double x);
+      string substring( [in] string astring, [in] long start, [in] long length);
+      long doobiemult( [in] long a, [in] long b );
+    };
+
+}; }; }; };
