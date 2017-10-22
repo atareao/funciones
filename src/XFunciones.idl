@@ -8,6 +8,11 @@ module es { module atareao { module libreoffice { module Funciones {
       double interpola( [in] double x1, [in] double y1, [in] double x2, [in] double y2, [in] double x);
       string substring( [in] string astring, [in] long start, [in] long length);
       long doobiemult( [in] long a, [in] long b );
+      string encodebase64( [in] string text);
+      string decodebase64( [in] string text);
+      string sha1( [in] string text);
+      string sha256( [in] string text);
+      string md5( [in] string text);
     };
 
 }; }; }; };

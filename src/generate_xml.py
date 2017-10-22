@@ -25,7 +25,7 @@ addin_name = 'Funciones'
 addin_python_file = 'funciones.py'
 excel_addin_name = 'Funciones.xlam'
 addin_id = "%s.%s" % (addin_url, addin_name)
-addin_version = "0.0.2"
+addin_version = "0.0.3"
 addin_displayname = "Funciones varias"
 addin_publisher_link = "http://www.atareao.es"
 addin_publisher_name = "Lorenzo Carbonell"
@@ -61,7 +61,37 @@ addin_functions = [
             ('a', 'Numero 1'),
             ('b', 'Numero 2')]
     },
-    ]
+    {
+        'function_name': 'encodebase64',
+        'function_description': 'Cifra un texto en base 64',
+        'parameters': [
+            ('text', 'El texto a cifrar')]
+    },
+    {
+        'function_name': 'decodebase64',
+        'function_description': 'Descifra un texto en base 64',
+        'parameters': [
+            ('text', 'El texto a descifrar')]
+    },
+    {
+        'function_name': 'sha1',
+        'function_description': 'Calcula el resumen utilizando SHA1',
+        'parameters': [
+            ('text', 'El texto cuyo resumen se quiere calcular')]
+    },
+    {
+        'function_name': 'sha256',
+        'function_description': 'Calcula el resumen utilizando SHA256',
+        'parameters': [
+            ('text', 'El texto cuyo resumen se quiere calcular')]
+    },
+    {
+        'function_name': 'md5',
+        'function_description': 'Calcula el resumen utilizando MD5',
+        'parameters': [
+            ('text', 'El texto cuyo resumen se quiere calcular')]
+    },
+]
 
 
 # description.xml
@@ -124,6 +154,7 @@ manifest:media-type="application/vnd.sun.star.%s" \n' % (file_type))
 #
 # List of files in package and their types.
 
+
 manifest_xml = open('manifest.xml', 'w')
 
 manifest_xml.write('<manifest:manifest>\n')
@@ -183,7 +214,7 @@ Add-In</value></prop>\n')
     xml_file.write('    </node>\n')
     xml_file.write('  </node>\n')
 
-#
+
 calcaddin_xml = open('CalcAddIn.xcu', 'w')
 
 calcaddin_xml.write('<?xml version="1.0" encoding="UTF-8"?>\n')

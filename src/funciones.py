@@ -19,12 +19,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import uno
+# import uno
 import unohelper
 from es.atareao.libreoffice.Funciones import XFunciones
+import hashlib
+import base64
 
-# DoobieDoo OOo Calc Add-in implementation.
-# Created by jan@biochemfusion.com April 2009.
 
 unidades = []
 decenas = []
@@ -144,9 +144,10 @@ class FuncionesImpl(unohelper.Base, XFunciones):
 
     def is_integer(self, number):
         try:
-            dummy = int(number)
+            int(number)
             return True
-        except:
+        except Exception as e:
+            int(e)
             return False
         return False
 
@@ -165,8 +166,8 @@ class FuncionesImpl(unohelper.Base, XFunciones):
         return ''
 
     def interpola(self, x1, y1, x2, y2, x):
-        a = (x1 * y2 - x2 * y1)/(x1 - x2)
-        b = (y1 - y2)/(x1 - x2)
+        a = (x1 * y2 - x2 * y1) / (x1 - x2)
+        b = (y1 - y2) / (x1 - x2)
         return a + b * x
 
     def leenumero(self, number):
@@ -175,7 +176,6 @@ class FuncionesImpl(unohelper.Base, XFunciones):
         intue = int(number)
         number = str(number)
         longit = len(number)
-        trios = longit / 3
         if longit < 3:
             if intue < 31:
                 numero_leido = unidades[intue]
@@ -214,7 +214,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (centenas[int(parte_izquierda)] + ' ' +
                                 self.leenumero(parte_derecha))
         elif longit < 7:
-            parte_izquierda = number[:longit-3]
+            parte_izquierda = number[:longit - 3]
             parte_derecha = number[-3:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -224,7 +224,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.leenumero(parte_izquierda) + ' mil ' +
                                 self.leenumero(parte_derecha))
         elif longit < 13:
-            parte_izquierda = number[:longit-6]
+            parte_izquierda = number[:longit - 6]
             parte_derecha = number[-6:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -234,7 +234,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.leenumero(parte_izquierda) +
                                 ' millones ' + self.leenumero(parte_derecha))
         elif longit < 25:
-            parte_izquierda = number[:longit-12]
+            parte_izquierda = number[:longit - 12]
             parte_derecha = number[-12:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -244,7 +244,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.leenumero(parte_izquierda) +
                                 ' billones ' + self.leenumero(parte_derecha))
         elif longit < 49:
-            parte_izquierda = number[:longit-24]
+            parte_izquierda = number[:longit - 24]
             parte_derecha = number[-24:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -254,7 +254,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.leenumero(parte_izquierda) +
                                 ' trillones ' + self.leenumero(parte_derecha))
         elif longit < 97:
-            parte_izquierda = number[:longit-48]
+            parte_izquierda = number[:longit - 48]
             parte_derecha = number[-48:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -265,7 +265,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                 ' cuatrillones ' +
                                 self.leenumero(parte_derecha))
         elif longit < 193:
-            parte_izquierda = number[:longit-96]
+            parte_izquierda = number[:longit - 96]
             parte_derecha = number[-96:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.leenumero(parte_derecha)
@@ -275,7 +275,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.leenumero(parte_izquierda) +
                                 ' quintillones ' +
                                 self.leenumero(parte_derecha))
-        return numero_leido.upper()[:1]+numero_leido.lower()[1:]
+        return numero_leido.upper()[:1] + numero_leido.lower()[1:]
 
     def lee_numerof(self, number):
         if not self.is_integer(number):
@@ -283,7 +283,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
         intue = int(number)
         number = str(number)
         longit = len(number)
-        trios = longit / 3
+        # trios = longit / 3
         if longit < 3:
             if intue < 31:
                 numero_leido = unidadesf[intue]
@@ -322,7 +322,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (centenasf[int(parte_izquierda)] + ' ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 7:
-            parte_izquierda = number[:longit-3]
+            parte_izquierda = number[:longit - 3]
             parte_derecha = number[-3:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -332,7 +332,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                 numero_leido = (self.lee_numerof(parte_izquierda) + ' mil ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 13:
-            parte_izquierda = number[:longit-6]
+            parte_izquierda = number[:longit - 6]
             parte_derecha = number[-6:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -343,7 +343,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                 ' millones ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 25:
-            parte_izquierda = number[:longit-12]
+            parte_izquierda = number[:longit - 12]
             parte_derecha = number[-12:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -354,7 +354,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                 ' billones ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 49:
-            parte_izquierda = number[:longit-24]
+            parte_izquierda = number[:longit - 24]
             parte_derecha = number[-24:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -365,7 +365,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                 ' trillones ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 97:
-            parte_izquierda = number[:longit-48]
+            parte_izquierda = number[:longit - 48]
             parte_derecha = number[-48:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -377,7 +377,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                 ' cuatrillones ' +
                                 self.lee_numerof(parte_derecha))
         elif longit < 193:
-            parte_izquierda = number[:longit-96]
+            parte_izquierda = number[:longit - 96]
             parte_derecha = number[-96:]
             if int(parte_izquierda) == 0:
                 numero_leido = self.lee_numerof(parte_derecha)
@@ -388,11 +388,33 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                     numero_leido = (self.lee_numerof(parte_izquierda) +
                                     ' quintillones ' +
                                     self.lee_numerof(parte_derecha))
-        return numero_leido.upper()[:1]+numero_leido.lower()[1:]
+        return numero_leido.upper()[:1] + numero_leido.lower()[1:]
+
+    def encodebase64(self, text):
+        return base64.b64encode(text.encode())
+
+    def decodebase64(self, text):
+        return base64.b64decode(text).decode()
+
+    def sha1(self, text):
+        m = hashlib.sha1()
+        m.update(text.encode())
+        return m.hexdigest()
+
+    def sha256(self, text):
+        m = hashlib.sha1()
+        m.update(text.encode())
+        return m.hexdigest()
+
+    def md5(self, text):
+        m = hashlib.md5()
+        m.update(text.encode())
+        return m.hexdigest()
 
 
 def createInstance(ctx):
     return FuncionesImpl(ctx)
+
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation(
