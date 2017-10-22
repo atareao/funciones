@@ -4,6 +4,8 @@ como:
 * LEENUMERO para convertir de número a texto.
 * INTERPOLA para calcular la coordenada y de un punto interpolando entre otros dos
 * SUBSTRING para extraer una cadena de texto de otra
+* CAPITALIZA cambia la primera letra a mayusculas
+* TITULIZA convierte una cadena en Formato Titulo
 * ENCODEBASE64 Cifra un texto en base 64
 * DECODEBASE64 Descifra un texto en base 64
 * SHA1 Calcula el resumen utilizando SHA1

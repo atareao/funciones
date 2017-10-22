@@ -431,4 +431,5 @@ g_ImplementationHelper.addImplementation(
 if __name__ == '__main__':
     fi = FuncionesImpl(None)
     print(fi.leenumero(111223))
-    print(fi.tituliza('esto es una prueba'))
+    print(fi.capitalizar('esto es una prueba'))
+    print(fi.titulizar('esto es una prueba'))

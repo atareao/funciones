@@ -8,7 +8,7 @@ module es { module atareao { module libreoffice { module Funciones {
       double interpola( [in] double x1, [in] double y1, [in] double x2, [in] double y2, [in] double x);
       string substring( [in] string astring, [in] long start, [in] long length);
       long doobiemult( [in] long a, [in] long b );
-      string capizaliza( [in] string text);
+      string capitaliza( [in] string text);
       string tituliza( [in] string text);
       string encodebase64( [in] string text);
       string decodebase64( [in] string text);
