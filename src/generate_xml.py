@@ -62,6 +62,19 @@ addin_functions = [
             ('b', 'Numero 2')]
     },
     {
+        'function_name': 'capizaliza',
+        'function_description': 'Convierte una cadena con la primera letra en \
+mayúsculas.',
+        'parameters': [
+            ('text', 'El texto a capitalizar')]
+    },
+    {
+        'function_name': 'tituliza',
+        'function_description': 'Convierte una cadena en Formato Título',
+        'parameters': [
+            ('text', 'El texto a titulizar')]
+    },
+    {
         'function_name': 'encodebase64',
         'function_description': 'Cifra un texto en base 64',
         'parameters': [

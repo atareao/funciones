@@ -390,6 +390,12 @@ class FuncionesImpl(unohelper.Base, XFunciones):
                                     self.lee_numerof(parte_derecha))
         return numero_leido.upper()[:1] + numero_leido.lower()[1:]
 
+    def capitaliza(self, text):
+        return text.capitalize()
+
+    def tituliza(self, text):
+        return text.title()
+
     def encodebase64(self, text):
         return base64.b64encode(text.encode())
 
@@ -425,3 +431,4 @@ g_ImplementationHelper.addImplementation(
 if __name__ == '__main__':
     fi = FuncionesImpl(None)
     print(fi.leenumero(111223))
+    print(fi.tituliza('esto es una prueba'))
