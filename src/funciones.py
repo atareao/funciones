@@ -408,7 +408,7 @@ class FuncionesImpl(unohelper.Base, XFunciones):
         return m.hexdigest()
 
     def sha256(self, text):
-        m = hashlib.sha1()
+        m = hashlib.sha256()
         m.update(text.encode())
         return m.hexdigest()
 
